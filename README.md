@@ -2,7 +2,27 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## The effect each of the P, I, D components 
+First I followed trial and error technique to get more sense about how each controller component affects the system and what's the best values for each component.
 
+
+### The effect of each component :
+-<b> P conroller <b> : When increasing the gain it reaches to the goal quickly ( raising time decreases ) but unfortunately overshoots and when decreasing it it will take very very long time ( raising time increases ) and there will be a steady state error. 
+ 
+-<b> D controller <b> : D controller tracs the changes in error over time , so if the error decreases the D controller knows that easily and vice verse.
+  
+-<b> I controller <b> : I controller integrates the error over time so it helps in reducing steady state error and also overcomes small overshoots.
+ 
+ ## Technique explanation
+I adjust P controller to be small to make the raising time heigh and prevent fast overshooting , and the reason for this is to be able to adjust D conroller to track error before the system overshoots so before the system overshoots the D controller prevent this and force the system to reach to reference point.
+ 
+After adjusting these two parameters (Kp for P controller) and (Kd for D controller) the car overshoots very small , so I adjusted the integrator to be very small to remove this little overshooting.
+ 
+After playing more and more with values I found that the following values are very effective:
+ - KP = 0.1
+ - KD = 5
+ - KI = 0.000000025
+ 
 ## Dependencies
 
 * cmake >= 3.5
