@@ -1,6 +1,7 @@
 #ifndef PID_H
 #define PID_H
 
+#include <tuple>
 class PID {
  public:
   /**
@@ -45,6 +46,11 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+  int    mCteOscillations; // number of oscillations of cte 
+  int	 mOscillationThreshold;  // minimum number of oscillation allowed 
+  int    mCounter;
+  double mCteObserver;
+  double mPrevCteObserver; // holds the previous cte
 };
 
 #endif  // PID_H
